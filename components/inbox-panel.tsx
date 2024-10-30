@@ -34,22 +34,22 @@ export default function InboxPanel({ isOpen, onClose }: InboxPanelProps) {
   return (
     <div
       className={cn(
-        "fixed inset-0 bg-background transform transition-transform duration-300 ease-in-out",
+        "fixed inset-0 bg-background transform transition-transform duration-300 ease-in-out overflow-hidden",
         isOpen ? "translate-y-0" : "translate-y-full"
       )}
     >
-      <div className="container mx-auto p-4 h-full">
+      <div className="container mx-auto p-4 h-full flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-6 flex-shrink-0">
           <h2 className="text-2xl font-bold">Inbox</h2>
           <Button variant="ghost" size="icon" onClick={onClose}>
             <X className="h-6 w-6" />
           </Button>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-12 h-[calc(100vh-8rem)]">
+        <div className="grid gap-6 md:grid-cols-12 flex-1 min-h-0">
           {/* Sidebar */}
-          <div className="md:col-span-2 space-y-6">
+          <div className="md:col-span-2 space-y-6 overflow-auto">
             {/* Filters */}
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
@@ -91,17 +91,17 @@ export default function InboxPanel({ isOpen, onClose }: InboxPanelProps) {
           </div>
 
           {/* Email List and View */}
-          <div className="md:col-span-10">
-            <Card className="h-full">
+          <div className="md:col-span-10 min-h-0">
+            <Card className="h-full flex flex-col">
               {selectedEmail ? (
                 <EmailView
                   email={selectedEmail}
                   onBack={() => setSelectedEmail(null)}
                 />
               ) : (
-                <ScrollArea className="h-full">
+                <ScrollArea className="flex-1">
                   <div className="p-4 space-y-4">
-                    {[...Array(10)].map((_, index) => (
+                    {[...Array(20)].map((_, index) => (
                       <EmailPreview
                         key={index}
                         subject="Weekly Newsletter"
