@@ -11,6 +11,45 @@ import AISuggestions from "@/components/ai-suggestions";
 import SearchBar from "@/components/search-bar";
 import InboxPanel from "@/components/inbox-panel";
 
+const importantEmails = [
+  {
+    id: 1,
+    title: "Project Launch",
+    summary: "Final timeline and resource allocation for the Q4 product launch. Team roles and key milestones defined.",
+    from: "Project Manager - Sarah Chen"
+  },
+  {
+    id: 2,
+    title: "Budget Review",
+    summary: "Q3 financial performance exceeded expectations. New budget allocations proposed for upcoming initiatives.",
+    from: "Finance Director - Michael Ross"
+  },
+  {
+    id: 3,
+    title: "Client Meeting",
+    summary: "Key points from Enterprise client discussion. New requirements and timeline adjustments needed.",
+    from: "Account Manager - David Kim"
+  },
+  {
+    id: 4,
+    title: "Team Updates",
+    summary: "Weekly progress report on ongoing projects. Several milestones achieved ahead of schedule.",
+    from: "Team Lead - Emma Watson"
+  },
+  {
+    id: 5,
+    title: "Security Alert",
+    summary: "Important security protocol updates. All team members required to update credentials by Friday.",
+    from: "IT Security - James Wilson"
+  },
+  {
+    id: 6,
+    title: "Strategy Review",
+    summary: "Annual strategy meeting outcomes. New market opportunities identified for Q1 next year.",
+    from: "CEO - Lisa Martinez"
+  }
+];
+
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isInboxOpen, setIsInboxOpen] = useState(false);
@@ -41,20 +80,26 @@ export default function Home() {
                 </ScrollArea>
               </Card>
 
-              {/* Middle Column - Recent Emails */}
+              {/* Middle Column - Important Emails */}
               <Card className="md:col-span-6 flex flex-col">
                 <ScrollArea className="flex-1">
                   <div className="p-4">
-                    <h2 className="text-xl font-semibold mb-4">Recent Emails</h2>
-                    <div className="space-y-4">
-                      {[...Array(5)].map((_, index) => (
-                        <EmailPreview
-                          key={index}
-                          subject="Project Update Meeting"
-                          sender="Sarah Johnson"
-                          preview="Hi team, I wanted to share the latest updates..."
-                          time="10:30 AM"
-                        />
+                    <h2 className="text-xl font-semibold mb-4">Important</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {importantEmails.map((email) => (
+                        <div
+                          key={email.id}
+                          className="p-4 rounded-lg border hover:bg-muted/50 transition-colors cursor-pointer"
+                          onClick={() => setIsInboxOpen(true)}
+                        >
+                          <h3 className="font-semibold text-lg mb-2">{email.title}</h3>
+                          <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                            {email.summary}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {email.from}
+                          </p>
+                        </div>
                       ))}
                     </div>
                   </div>
