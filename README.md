@@ -14,3 +14,6 @@ A mail client concept to help simplify your inbox. For those who don't like spen
   - e.g. unsubscribe from a certain news letter
 - Inbox
   - view your inbox just like you do in gmail
+
+## Acknowledgements
+ - [Bolt.new](https://bolt.new/)
