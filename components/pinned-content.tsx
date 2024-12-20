@@ -17,6 +17,7 @@ export default function PinnedContent() {
           sender="Team Lead"
           preview="Here are the key points from today's meeting..."
           time="Yesterday"
+          onClick={() => console.log('Pinned email clicked')}
         />
       ))}
     </div>
