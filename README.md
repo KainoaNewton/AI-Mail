@@ -1,7 +1,7 @@
 > [!NOTE]
 > This is only a concept and not a working prototype.
 
-# Aplos-Mail
+# AI Mail
 A mail client concept to help simplify your inbox. For those who don't like spending time in their email.
 
 ## Features
